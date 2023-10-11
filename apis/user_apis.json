@@ -1,0 +1,7 @@
+{
+  "list": {
+    "method": "get",
+    "access_type": "private",
+    "display_name": "List"
+  }
+}
