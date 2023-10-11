@@ -73,6 +73,10 @@ GEM
     concurrent-ruby (1.2.0)
     crass (1.0.6)
     date (3.3.3-java)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     ffi (1.15.5-java)
     globalid (1.1.0)
@@ -177,6 +181,7 @@ PLATFORMS
 DEPENDENCIES
   active_interaction
   activerecord-jdbcpostgresql-adapter
+  dotenv-rails
   listen (~> 3.3)
   pry-debugger-jruby
   puma (~> 5.0)
@@ -187,4 +192,4 @@ RUBY VERSION
    ruby 2.6.8p0 (jruby 9.3.3.0)
 
 BUNDLED WITH
-   2.3.6
+   2.3.8

@@ -6,7 +6,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+pool_default: &pool_default
+  pool: 800
 
 development_default: &development_default
   database: <%= ENV.fetch("database_name") {''} %>
@@ -15,10 +17,25 @@ development_default: &development_default
   host: <%= ENV.fetch("database_host") {''} %>
   port: <%= ENV.fetch("database_port") {''} %>
 
+production_default: &production_default
+  database: <%= Rails.application.credentials.dig(:database, :name) %>
+  username: <%= Rails.application.credentials.dig(:database, :username) %>
+  password: <%= Rails.application.credentials.dig(:database, :password) %>
+  host: <%= Rails.application.credentials.dig(:database, :host) %>
+  port: <%= Rails.application.credentials.dig(:database, :port) %>
+  sslmode: disable
+
 development:
   primary:
     <<: *default
+    <<: *pool_default
     <<: *development_default
+
+production:
+  primary:
+    <<: *default
+    <<: *pool_default
+    <<: *production_default
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -71,8 +88,3 @@ development:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: my_application_production
-  username: my_application
-  password: <%= ENV['MY_APPLICATION_DATABASE_PASSWORD'] %>

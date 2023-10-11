@@ -48,7 +48,15 @@ module MyApplication
     config.api_only = true
     config.eager_load_paths += %W[#{config.root}/app]
     config.eager_load_paths += %W[#{config.root}/lib]
-    Dir[Rails.root.join("services/**/*.rb")].each { |f| require f }
+    
+    services = Dir.glob("#{Rails.root.join('services')}/*").map { |t| t.split('services/').last }
+    service_directories = %w[interactions models helpers store_models]
 
+    services.each do |service|
+      config.eager_load_paths += %W[#{config.root}/services/#{service}]
+      service_directories.each do |service_directory|
+        config.eager_load_paths += %W[#{config.root}/services/#{service}/#{service_directory}]
+      end
+    end
   end
 end
