@@ -1,7 +1,32 @@
 {
-  "list": {
+  "create_user": {
+    "method": "post",
+    "access_type": "public",
+    "display_name": "Create User"
+  },
+  "update_user": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Update User"
+  },
+  "list_users": {
     "method": "get",
     "access_type": "private",
-    "display_name": "List"
+    "display_name": "List Users"
+  },
+  "get_user": {
+    "method": "get",
+    "access_type": "private",
+    "display_name": "Get User"
+  },
+  "get_user_session": {
+    "method": "get",
+    "access_type": "private",
+    "display_name": "Get User Session"
+  },
+  "login_user": {
+    "method": "post",
+    "access_type": "public",
+    "display_name": "Login User"
   }
 }

@@ -1,0 +1,12 @@
+{
+  "create_post": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Create User"
+  },
+  "list_posts": {
+    "method": "get",
+    "access_type": "private",
+    "display_name": "List Posts"
+  }
+}
