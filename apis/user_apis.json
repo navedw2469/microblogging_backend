@@ -21,7 +21,7 @@
   },
   "get_user_session": {
     "method": "get",
-    "access_type": "private",
+    "access_type": "public",
     "display_name": "Get User Session"
   },
   "login_user": {

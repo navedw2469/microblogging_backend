@@ -22,7 +22,7 @@ class LoginUser < Interaction
       return
     end
 
-    { session_token: session.id } 
+    { session_token: session.id, user: user.as_json.deep_symbolize_keys.slice(:id, :user_name, :profile_image_url, :email, :full_name, :dob, :bio) } 
   end
 
   def get_user

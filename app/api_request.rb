@@ -46,6 +46,8 @@ class ApiRequest
   def is_unauthenticated?
     return false if self.api_config[:access_type] == 'public'
 
+    return true if self.auth_token.blank?
+
     session = GetUserSession.run!(session_token: self.auth_token)
 
     return true if session.blank?
