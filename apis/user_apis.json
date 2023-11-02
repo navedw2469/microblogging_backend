@@ -28,5 +28,15 @@
     "method": "post",
     "access_type": "public",
     "display_name": "Login User"
+  },
+  "create_user_follower": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Create User Follower"
+  },
+  "update_user_follower": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Update User Follower"
   }
 }

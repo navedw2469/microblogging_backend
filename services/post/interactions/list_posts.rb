@@ -1,4 +1,5 @@
 class ListPosts < Interaction
+  string :performed_by_id
   hash :filters, default: {}, strip: false
   integer :page_limit, default: 10
   integer :page, default: 1
@@ -44,20 +45,27 @@ class ListPosts < Interaction
     query
   end
 
-  def apply_liked_by_id_filter
+  def apply_liked_by_id_filter(query)
     query = query.joins(:likes).where(:post_likes => { user_id: self.filters[:liked_by_id] })
   end
 
   def get_data(query)
     data = query.as_json.map(&:deep_symbolize_keys)
     ids = data.pluck(:id)
+    
+    liked_by_loggedin_user_posts = PostLike.where(post_id: ids, user_id: self.performed_by_id).pluck(:post_id)
+    replied_by_loggedin_user_posts = Post.where(parent_post_id: ids, user_id: self.performed_by_id).pluck(:parent_post_id)
+    
 
     likes = PostLike.where(post_id: ids).group(:post_id).count
     replies = Post.where(parent_post_id: ids).group(:parent_post_id).count
 
+
     data.each do |obj|
       obj[:likes_count] = likes[obj[:id]].to_i
+      obj[:is_liked] = liked_by_loggedin_user_posts.include?(obj[:id])
       obj[:replies_count] = replies[obj[:id]].to_i
+      obj[:is_replied] = replied_by_loggedin_user_posts.include?(obj[:id])
     end
 
     data = get_user_data(data) if self.is_user_data_required

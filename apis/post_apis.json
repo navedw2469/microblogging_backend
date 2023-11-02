@@ -2,11 +2,21 @@
   "create_post": {
     "method": "post",
     "access_type": "private",
-    "display_name": "Create User"
+    "display_name": "Create Post"
   },
   "list_posts": {
     "method": "get",
     "access_type": "private",
     "display_name": "List Posts"
+  },
+  "create_post_like": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Create Post Like"
+  },
+  "update_post_like": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Update Post Like"
   }
 }
