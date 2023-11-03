@@ -38,5 +38,10 @@
     "method": "post",
     "access_type": "private",
     "display_name": "Update User Follower"
+  },
+  "logout_user": {
+    "method": "post",
+    "access_type": "public",
+    "display_name": "Logout User"
   }
 }

@@ -57,7 +57,7 @@ class ListPosts < Interaction
     replied_by_loggedin_user_posts = Post.where(parent_post_id: ids, user_id: self.performed_by_id).pluck(:parent_post_id)
     
 
-    likes = PostLike.where(post_id: ids).group(:post_id).count
+    likes = PostLike.where(post_id: ids, is_active: true).group(:post_id).count
     replies = Post.where(parent_post_id: ids).group(:parent_post_id).count
 
 
