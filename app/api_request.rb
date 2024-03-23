@@ -1,8 +1,9 @@
 class ApiRequest
-  attr_accessor :api_path, :api_config, :interaction, :request_params, :response
+  attr_accessor :api_path, :auth_token, :api_config, :interaction, :request_params, :response
 
-  def initialize(api_path)
+  def initialize(api_path, auth_token)
     self.api_path = api_path
+    self.auth_token = auth_token
   end
 
   def set_api_config
@@ -40,6 +41,20 @@ class ApiRequest
 
   def is_bad_request?
     self.response[:errors].present?
+  end
+
+  def is_unauthenticated?
+    return false if self.api_config[:access_type] == 'public'
+
+    return true if self.auth_token.blank?
+
+    session = GetUserSession.run!(session_token: self.auth_token)
+
+    return true if session.blank?
+    
+    self.request_params[:performed_by_id] = session[:user][:id]
+
+    return false
   end
 
   def validation_errors
