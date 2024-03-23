@@ -2,7 +2,7 @@ class GetUserSession < Interaction
   string :session_token
 
   def execute
-    session = UserSession.where(id: session_token).where('expiry_time > ?', Time.now).first
+    session = UserSession.where(id: session_token, is_active: true).where('expiry_time > ?', Time.now).first
 
     return {} if session.blank?
     

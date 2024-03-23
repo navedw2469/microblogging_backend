@@ -30,6 +30,7 @@ class CreateUser < Interaction
   def get_create_params
     params = @_interaction_inputs.compact.except(:is_user_data_required)
     params[:sessions_attributes] = [{ is_active: true, expiry_time: Time.now + 1.day }]
+    params[:status] = 'active'
 
     return params
   end

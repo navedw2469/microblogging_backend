@@ -9,6 +9,11 @@
     "access_type": "private",
     "display_name": "List Posts"
   },
+  "get_post": {
+    "method": "get",
+    "access_type": "private",
+    "display_name": "Get Post"
+  },
   "create_post_like": {
     "method": "post",
     "access_type": "private",
@@ -18,5 +23,15 @@
     "method": "post",
     "access_type": "private",
     "display_name": "Update Post Like"
+  },
+  "create_post_bookmark": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Create Post Bookmark"
+  },
+  "update_post_bookmark": {
+    "method": "post",
+    "access_type": "private",
+    "display_name": "Update Post Bookmark"
   }
 }
